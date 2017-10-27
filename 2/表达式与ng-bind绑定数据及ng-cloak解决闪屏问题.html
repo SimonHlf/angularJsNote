@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			.ng-cloak{
+				display:none;
+			}
+		</style>
+	</head>
+	<body ng-app='hd' ng-cloak class="ng-cloak">
+		<div ng-controller='ctrl'>
+			<!-- 
+				{{}}//表达式	 类似于js表达式
+				当只是获取数据的时候，我们只是使用指令来书写
+				当后面需要连接一部分字符串的时候。我们需要用表达式的方式书写
+				如果只想使用表达式来连接字符串又不想出现{},使用ng-cloak再结合一个类来解决
+				.ng-cloak display:none，当浏览器解析到某个元素存在ng-cloak的时候在用ng-cloak这指令将其显示出来
+				ng-cloak会将包含ng-cloak的标签给显示出来
+			-->
+			{{name + 'houdunwang.com'}}<br>
+			{{user.username + '=>' + user.url}}<br>
+			{{num*8}}<br>
+			<h3 ng-bind="name + 'houdunwang.com'"></h3><br>
+		</div>
+		<script type="text/javascript" src="../org/angular.min.js" ></script>
+		<script>
+			var m = angular.module('hd',[]);
+			m.controller('ctrl',['$scope',function($scope){
+				$scope.name = "后盾网";
+				$scope.user = {'username' : '后盾人','url':'houdunwang.com'};
+				$scope.num = 2;
+			}]);
+		</script>
+	</body>
+</html>

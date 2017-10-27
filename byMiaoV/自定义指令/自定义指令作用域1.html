@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html ng-app='myApp'>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../angular.min.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			#div1 div,#div2 div{display: none; width: 200px; height: 200px;border:1px solid red;}
+			input.active{background:red;}
+		</style>
+		<script type="text/javascript">
+			var m = angular.module('myApp',[]);
+			m.directive('myTab',function(){
+				return {
+					restrict:'E',
+					replace:true,
+					//scope:true,
+					scope:{
+						myId : '@',
+						myName : '=',
+						myFn : '&'
+					},//->隔离作用域
+					controller:['$scope',function($scope){
+						//数据是共享的
+						$scope.name='miaov';
+					}],
+					templateUrl:'templateUrlHtml.html'
+				}
+			});
+			m.controller('Aaa',['$scope',function($scope){
+				$scope.name = "hello";
+				/*$scope.show = function(){
+					alert(123);
+				}*/
+				//传参
+				$scope.show = function(n){
+					alert(n);
+				}
+			}]);
+		</script>
+	</head>
+	<body ng-controller='Aaa'>
+		<my-tab my-id="div1" my-name="name" my-fn="show(num)"></my-tab>
+		<my-tab my-id="div2" my-name="name" my-fn="show(num)"></my-tab>
+		<!--<my-tab ng-init="name='hi'"></my-tab>-->
+	</body>
+</html>

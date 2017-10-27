@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html ng-app='myApp'>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../angular.min.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			.red{background:red;}
+			.yellow{background:yellow;}
+		</style>
+		<script type="text/javascript">
+			var m = angular.module('myApp',[]);
+			m.controller('Aaa',['$scope',function($scope){
+				$scope.regText = {
+					regVal : 'default',
+					regList : [
+						{name : 'default',tips:'请输入用户名'},
+						{name : 'required',tips:'用户名不能为空'},
+						{name : 'pattern',tips:'用户名必须是字母类型'},
+						{name : 'pass',tips:'√'}
+					]
+				};
+				$scope.regPassword = {
+					regVal : 'default',
+					regList : [
+						{name : 'default',tips:'请输入密码'},
+						{name : 'required',tips:'密码不能为空'},
+						{name : 'minlength',tips:'密码至少为6位'},
+						{name : 'pass',tips:'√'}
+					]
+				};
+				$scope.change = function(obj,err){
+					for(var attr in err){
+						if(err[attr] == true){//验证失败
+							$scope[obj].regVal = attr;
+							return;		
+						}
+					}
+					$scope[obj].regVal = 'pass';
+				}
+			}]);
+			
+		</script>
+	</head>
+	<body>
+		<div ng-controller="Aaa">
+			<form novalidate name="nForm">
+				<div>
+					<label>用户名：</label>
+					<input type="text" name="nText" ng-model="regText.name" required ng-pattern="/^[a-zA-z]+$/" ng-blur="change('regText',nForm.nText.$error)"/>
+					<span ng-repeat="re in regText.regList | filter:regText.regVal">{{re.tips}}</span>
+				</div>
+				<div>
+					<label>密码：</label>
+					<input type="password" name="nPassword" ng-model="regPassword.name" required ng-minlength="6" ng-blur="change('regPassword',nForm.nPassword.$error)" />
+					<span ng-repeat="re in regPassword.regList | filter:regPassword.regVal">{{re.tips}}</span>
+				</div>
+			</form>
+		</div>
+	</body>
+</html>

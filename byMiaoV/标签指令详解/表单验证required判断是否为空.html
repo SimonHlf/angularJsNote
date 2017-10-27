@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html ng-app='myApp'>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../angular.min.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			input.ng-valid{border:1px solid green;}
+			input.ng-invalid{border:1px solid red;}		
+			.red{background:red;}
+			.yellow{background:yellow;}
+		</style>
+		<script type="text/javascript">
+			var m = angular.module('myApp',[]);
+			m.controller('Aaa',['$scope',function($scope){
+				$scope.text = 'hello';
+			}]);
+			
+		</script>
+	</head>
+	<body>
+		<div ng-controller="Aaa">
+			<form novalidate name="myForm">
+				<input type="text" name="myText"ng-model="text" required ng-minlength="5" ng-pattern="/^[a-zA-z]+$/" />
+				<div>{{myForm.myText.$valid}}</div>
+				<div>{{myForm.myText.$invalid}}</div>
+				<div>$pristine初始值：{{myForm.myText.$pristine}}</div>
+				<div>$dirty初始值：{{myForm.myText.$dirty}}</div>
+				<div>{{myForm.myText.$error}}</div>
+			</form>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../../org/angular.min.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			.red{
+				background:red;
+			}
+			.green{
+				background:green;
+			}
+		</style>
+	</head>
+	<body>
+		<!--
+        	ng-class-even:设置偶数行的类
+        	ng-class-odd:设置奇数行的类
+        -->
+		<div ng-app='hd' ng-controller='ctrl'>
+			<table border=1 width="600">
+				<tr>
+					<td>编号</td>
+					<td>姓名</td>
+					<td>年龄</td>
+				</tr>
+				<!--<tr ng-repeat="v in data" ng-class-even="{red:true}">-->
+				<!--<tr ng-repeat="v in data" ng-class-odd="{red:true}">-->
+				<tr ng-repeat="v in data" ng-class-odd="{red:true}" ng-class-even="{green:true}">
+					<td>{{v.id}}</td>
+					<td>{{v.username}}</td>
+					<td>{{v.age}}</td>
+				</tr>
+			</table>
+		</div>
+		<script type="text/javascript">
+			var m = angular.module('hd',[]);
+			m.controller('ctrl',['$scope',function($scope){
+				$scope.data = [
+					{id:1,username:'小明',age:31,status:1},
+					{id:2,username:'小强',age:25,status:0},
+					{id:3,username:'小张',age:26,status:1},
+					{id:4,username:'张三',age:35,status:0}
+				];
+			}]);
+		</script>
+	</body>
+</html>

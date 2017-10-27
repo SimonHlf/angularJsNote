@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html ng-app='myApp'>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="angular.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			//angular.module('模块名字',['当前模块要依赖的其他模块']); 并且ng-app要从新指定下从哪个模块开始初始化
+			//弊端：开发版本可以，但是作为线上版本不行，压缩处理会把scope给处理掉
+			var m1 = angular.module('myApp',[]);
+			/*m1.controller('Aaa',function($scope){
+				$scope.name = 'hello';
+			});
+			m1.controller('Bbb',function($scope){
+				$scope.name = 'hi';
+			});*/
+			//解决压缩问题：
+			
+			m1.controller('Aaa',['$scope',function($scope){
+				$scope.name = 'hello';
+			}]);
+			m1.controller('Bbb',['$scope',function($scope){
+				$scope.name = 'hii';
+			}]);
+			/*function Aaa($scope){
+				$scope.name = 'hello';
+			}
+			function Bbb($scope){
+				$scope.name = 'hi';
+			}*/
+		</script>
+	</head>
+	<body>
+		<div ng-controller="Aaa">
+			<p>{{name}}</p>
+		</div>
+		<div ng-controller="Bbb">
+			<p>{{name}}</p>
+		</div>
+	</body>
+</html>

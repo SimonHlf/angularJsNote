@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../../org/angular.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../org/angular-ui-router.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<!-- 
+			路由器定义到模块里面
+			hd模块要继承 ui.router
+			如果默认路由后面不想带参数设置默认为空就可
+			路由是在控制器之上执行的
+		-->
+		<div ng-app='hd' ng-controller='ctrl'>
+			<div ui-view></div>
+		</div>
+		<script type="text/javascript">
+			var m = angular.module('hd',['ui.router']);
+			//路由器必须起始的时候就开始执行
+			m.config(['$stateProvider','$urlRouterProvider',function($stateProvider,$urlRouterProvider){
+				//默认路由 
+				$urlRouterProvider.otherwise('/hd');//默认返回hd
+				//定义路由器
+				//路由规则
+				$stateProvider.state('default',{
+					url:'/hd',
+					template:'<h1>后盾人</h1>'
+				});
+			}]);
+			/*m.config(['$stateProvider','$urlRouterProvider',function($stateProvider,$urlRouterProvider){
+		        //默认路由
+		        $urlRouterProvider.otherwise('');
+		        //定义路由规则
+		        $stateProvider.state('default',{
+		            url:'',
+		            template:'<h1>后盾人</h1>'
+		        })
+		    }])*/
+			m.controller('ctrl',['$scope',function($scope){}]);
+		</script>
+	</body>
+</html>

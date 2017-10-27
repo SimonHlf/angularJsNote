@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../../org/angular.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<!-- 
+			ng-options帮助我们构建出表单列表
+			
+			v.in类似循环遍历
+		-->
+		<div ng-app='hd' ng-controller='ctrl'>
+			<select ng-options="v.value as v.name for v in data" ng-model="city">
+				<option value="">请选择城市</option>
+			</select>
+			{{city}}
+		</div>
+		<script type="text/javascript">
+			var m = angular.module('hd',[]);
+			m.controller('ctrl',['$scope',function($scope){
+				$scope.city = "beijing";
+				$scope.data = [
+					{'name':'后盾网','value':'houdunwang'},
+					{'name':'北京','value':'beijing'},
+					{'name':'南京','value':'nanjing'}
+				];
+			}]);
+		</script>
+	</body>
+</html>

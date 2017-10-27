@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../../org/angular.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<!--
+        	ng-repeat:循环指令 遍历
+        	v每一条记录
+        	{{$first}}遍历数据中的第一条记录 true
+        	{{$last}} 遍历数据中的最后一条记录 true
+        	{{$middle}} 遍历数据中的中间记录
+        	{{$even}}遍历数据中的偶数行
+        	{{$odd}}遍历数据中的奇数行
+        -->
+		<div ng-app='hd' ng-controller='ctrl'>
+			<ul>
+				<!--<li ng-repeat="v in data">-->
+				<!--<li ng-repeat="(k,v) in data" style="{{k==0?'color:red':''}}">-->
+				<!-- <li ng-repeat="(k,v) in data" style="{{$first?'color:red':''}}"></li> -->
+				<!--<li ng-repeat="(k,v) in data" style="{{$last?'color:blue':''}}">-->
+				<!--<li ng-repeat="(k,v) in data" style="{{$middle?'color:red':''}}">-->
+				<!--<li ng-repeat="(k,v) in data" style="{{$even?'color:red':''}}">-->
+				<!--<li ng-repeat="(k,v) in data" style="{{$odd?'color:green':''}}">-->
+				<li ng-repeat="(k,v) in data" style="{{$odd?'color:red':''}}">
+					{{k}}
+					<!--{{$first}}-->
+					
+					名称：{{v.name}}  网址：{{v.url}}
+				</li>
+				<hr/>
+				<li ng-repeat="(k,v) in data">
+					<span ng-if="$first" style="{{$first?'color:red':''}}">名称：{{v.name}} 网址：{{v.url}}</span>
+					<span ng-if="$middle">名称：{{v.name}} 网址：{{v.url}}</span>
+					<span ng-if="$last" style="{{$last?'color:green':''}}">名称：{{v.name}} 网址：{{v.url}}</span>
+				</li>
+			</ul>
+		</div>
+		<script type="text/javascript">
+			var m = angular.module('hd',[]);
+			m.controller('ctrl',['$scope',function($scope){
+				$scope.data = [
+					{'name':'后盾人','url':'houdunren.com'},
+					{'name':'后盾网','url':'houdunwang.com'},
+					{'name':'后盾云','url':'hdphp.com'},
+					{'name':'hdcms','url':'hdcms.com'}
+				];
+			}]);
+		</script>		
+	</body>
+</html>

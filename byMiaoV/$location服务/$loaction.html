@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html ng-app='myApp'>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../angular.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			var m = angular.module('myApp',[]);
+			m.controller('Aaa',['$scope','$location',function($scope,$location){
+				var a = $location.absUrl();//获取网址信息的绝对地址 获取的是编码后的一个地址
+				console.log(a);
+				//var b = $location.path();//和路由挂钩 有历史管理可以前进后退可以用来做spa的跳转
+				//var b = $location.path('aaa');
+				//console.log(b);//->空字符串 #/aaa
+				var b = $location.path('aaa/bbb/ccc').replace();//replace不会存在历史管理
+				console.log(b);
+				
+				$location.hash('hello');
+				var c = $location.hash();
+				console.log(c);//hello
+				$location.search({'age':'20'});
+				
+			}]);
+			
+			
+			
+		</script>
+	</head>
+	<body>
+		<div ng-controller="Aaa"></div>
+	</body>
+</html>

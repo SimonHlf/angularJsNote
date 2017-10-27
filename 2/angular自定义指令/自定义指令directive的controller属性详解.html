@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../../org/angular.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<!-- 控制器的视图 大家 -->
+		<div ng-app='hd'>
+			<!-- 如果是组件最后写成标签的形式 E -->
+			<hd-cms></hd-cms>
+			<hd-cms></hd-cms>
+		</div>
+		<script type="text/javascript">
+			var m = angular.module('hd',[]);
+			/* 指令 小家 */
+			m.directive('hdCms',[function(){
+				return {
+					restrict:'E',
+					/* 指令小家里有视图，同样也可以有控制器 */
+					templateUrl:'../template/directiveController.html',
+					replace:true,
+					controller:['$scope',function($scope){
+						//$scope.name="后盾人"
+						$scope.data = [
+							{id:1,name:"后盾人"},
+							{id:2,name:"hdphp"},
+							{id:3,name:"hdcms"}
+						];
+					}]
+				}
+			}]);
+		</script>
+	</body>
+</html>

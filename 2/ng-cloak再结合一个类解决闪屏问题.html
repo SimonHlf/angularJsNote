@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="../org/angular.min.js" ></script>
+	</head>
+	<body ng-app='hd'>
+		<div ng-controller='ctrl'>
+			<!-- 
+				{{}}//表达式	 类似于js表达式
+				当只是获取数据的时候，我们只是使用指令来书写
+				当后面需要连接一部分字符串的时候。我们需要用表达式的方式书写
+			-->
+			{{name + 'houdunwang.com'}}<br>
+			{{user.username + '=>' + user.url}}<br>
+			{{num*8}}<br>
+			<h3 ng-bind="name + 'houdunwang.com'"></h3><br>
+		</div>
+		<script>
+			var m = angular.module('hd',[]);
+			m.controller('ctrl',['$scope',function($scope){
+				$scope.name = "后盾网";
+				$scope.user = {'username' : '后盾人','url':'houdunwang.com'};
+				$scope.num = 2;
+			}]);
+		</script>
+	</body>
+</html>

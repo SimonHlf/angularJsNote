@@ -1,0 +1,25 @@
+<meta charset="UTF-8" />
+<style type="text/css">
+		*{margin:0;padding:0}
+		.hd-tabs a{text-decoration: none;padding:6px 10px; border:2px solid #aaa;color:#aaa;display: inline-block;}
+		.hd-tabs a.active{
+			background:#aaa;
+			color:#fff;
+		}
+		.hd-tabs div.lists{
+			border:2px solid #aaa;
+			width:300px;
+			height: 200px;
+			margin-top:-2px;
+		}
+</style>
+<div class="hd-tabs">
+	<!--<a class="active" href="javascirpt:void(0)">后盾人</a>
+	<a href="javascirpt:void(0)">后盾网</a>-->
+	<a href="javascirpt:void(0)" ng-class="{active:$first}" ng-repeat="v in data">{{v.title}}</a>
+	<div class="lists" ng-repeat="v in data" ng-style="{display:$first?'block':'none'}">
+		<ul>
+			<li ng-repeat="m in v.data">{{m.title}}</li>
+		</ul>
+	</div>
+</div>

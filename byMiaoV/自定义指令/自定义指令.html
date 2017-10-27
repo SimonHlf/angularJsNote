@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html ng-app='myApp'>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../angular.min.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			.red{background:red;}
+			.yellow{background:yellow;}
+		</style>
+		<script type="text/javascript">
+			var m = angular.module('myApp',[]);
+			//xx-xx在js中命名自定义指令时采用驼峰方式
+			m.directive('hello',function(){
+				return {
+					restrict:'EACM',//区分大小写并且可以组合使用
+					replace:true,
+					template:'<div>hello angular</div>'
+				}
+			});
+			m.controller('Aaa',['$scope',function($scope){}]);
+		</script>
+	</head>
+	<body>
+		<!-- 标签指令E element -->
+		<hello></hello>
+		<!-- 属性指令A attribute -->
+		<p hello></p>
+		<!-- class的方式 -->
+		<p class="hello"></p>
+		<!-- 注释写法 -->
+		<!-- directive:hello -->
+		<div ng-controller="Aaa">
+			
+		</div>
+	</body>
+</html>

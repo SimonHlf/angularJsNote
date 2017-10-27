@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../../org/angular.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div ng-app='hd' ng-controller='ctrl'></div>
+		<script type="text/javascript">
+			var m = angular.module('hd',[]);
+			m.controller('ctrl',['$scope',function($scope){
+				//angular.isArray();//判断一个数据是否是数组
+				console.log(angular.isArray([]))//true
+				//angular.isDate();//判断一个对象是否是日期对象
+				console.log(angular.isDate(new Date()));//true
+				//angular.isDefined();//判断一个数据是否有定义
+				var a;
+				console.log(a)//undefined
+				console.log(angular.isDefined(a))//false
+				console.log(angular.isUndefined(a));//true
+				//angular.isFunction();//判断是否是一个函数
+				console.log("1" +angular.isFunction(function(){}));//true
+				//angular.isNumber();//判断一个数据是否是一个number
+				var b = 'a'
+				console.log("2" +　angular.isNumber(b));//false
+				//angular.isString();//判断一个数据是否是一个string
+				var s = "string";
+				console.log("string" +　angular.isString(s));//true
+				
+				//angular.isObject()//判断一个数据是否是对象类型
+				var d = {};
+				console.log("object" +angular.isObject(d))//true
+				//angular.isElement()//判断一个数据是否一个元素
+				//var e = "";
+				var e = document.getElementsByTagName("body")[0];
+				console.log("element" +angular.isElement(e));//false
+				
+				//angular.equals()//比较两个对象的数据是否相同
+				var f = 1;
+				var g = 1;
+				var x = {};
+				var z= {};
+				var m = {name : 9};
+				var n = {name : 8}
+				console.log("equals" +　angular.equals(f,g));//true
+				console.log("equals1" + angular.equals(x,z));//true
+				console.log("equals2" + angular.equals(m,n));//false
+			}]);
+			
+		</script>
+	</body>
+</html>

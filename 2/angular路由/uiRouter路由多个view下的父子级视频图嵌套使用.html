@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../../org/angular.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../org/angular-ui-router.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<!--
+			路由：橡皮擦擦除
+			多视图的使用：采用views	
+		-->
+		<div ng-app='hd'>
+			<div ui-view=""></div>
+			<div ui-view="content"></div>
+		</div>
+		<script type="text/javascript">
+			var m = angular.module('hd',['ui.router']);
+			//路由器必须起始的时候就开始执行
+			m.config(['$stateProvider','$urlRouterProvider',function($stateProvider,$urlRouterProvider){
+				//默认路由 
+				$urlRouterProvider.otherwise('/my');//默认返回hd
+				//定义路由器
+				$stateProvider
+					.state('my',{
+						url:'/my',
+						views:{
+							'@':{
+								templateUrl:'../template/viewsMyPar.html'
+							},
+							'content':{
+								templateUrl:'../template/viewsMyParCon.html'
+							}
+						}
+					})
+					.state('my.video',{
+						url:'/video',
+						views:{
+							'son@my':{
+								templateUrl:'../template/viewsMySon.html'
+							},
+							'content@':{
+								template:""
+							}
+						}
+					});
+			}]);
+		</script>
+	</body>
+</html>

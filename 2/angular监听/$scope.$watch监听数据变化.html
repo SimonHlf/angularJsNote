@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../../org/angular.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<!--
+        	$scope.$watch数据监听：监听一个字段
+        		$scope.$watch('title',function(n,o){})
+        		//1:需要监听的字段
+        		//2:n:新数据 o:上一次数据
+        -->
+		<div ng-app='hd' ng-controller='ctrl'>
+			标题：<input type="text" ng-model="title" />{{error}}
+		</div>
+		
+		<script type="text/javascript">
+			var m = angular.module('hd',[]);
+			m.controller('ctrl',['$scope',function($scope){
+				$scope.title="";
+				//数据监听
+				$scope.$watch('title',function(n,o){
+					//console.log(n);
+					$scope.error = n.length>3?'标题长度不能超过3位':'';
+				});
+			}]);
+		</script>
+	</body>
+</html>

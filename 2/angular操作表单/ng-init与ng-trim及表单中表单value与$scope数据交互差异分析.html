@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../../org/angular.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../org/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<!--
+        	ng-init:临时赋值数据（定义一个数据） ng-init="name='后盾人'"
+        	ng-trim:去除左右两天的特殊字符 和ng-model结合的(当表单为password的时候空格不会清楚。ng-trim不会清除表单里value里面的空格。但是可以清楚$scope里面的空格，所以提交的时候需要提交$scope里面的属性数据)
+        -->
+		<div ng-app='hd' ng-controller='ctrl' ng-init="name='后盾人'">
+			<form action="trim.php" method="post">
+				标题：<input type="text" ng-trim ng-model="title" name="title" /><br>
+				<input type="text" name="data"/><br>
+				<input type="submit"/>
+			</form>
+		</div>
+		<script type="text/javascript">
+			var m = angular.module('hd',[]);
+			m.controller('ctrl',['$scope',function($scope){
+				$scope.title="";
+				$('form').submit(function(){
+					//alert("3");
+					$("[name='data']").val($scope.title);
+				});
+			}]);	
+		</script>
+	</body>
+</html>

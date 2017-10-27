@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../../org/angular.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../org/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<!--
+			数据脏检查：
+				$scope.$apply()
+		-->
+		<div ng-app='hd' ng-controller='ctrl'>
+			{{name}}
+			<button ng-click="callback()">事件</button>
+			<hr>
+			<button id="btn">jquery处理</button>
+		</div>
+		<script type="text/javascript">
+			var m = angular.module('hd',[]);
+			m.controller('ctrl',['$scope',function($scope){
+				$scope.name="后盾人";
+//				$scope.callback = function(){
+//					$scope.name="向军老师";
+//				}
+				$("#btn").click(function(){
+					//alert("3")
+					$scope.name="houdunwang.com";
+					$scope.$apply();
+				});
+			}]);
+		</script>
+	</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html ng-app='myApp'>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../angular.min.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			#parent div{width: 300px; height: 500px;border:1px solid #000;margin:20px;}
+			#parent ul{width: 200px; position:fixed;top:0px;right:0px;}
+		</style>
+		<script type="text/javascript">
+			var m = angular.module('myApp',[]);
+			m.controller('Aaa',['$scope','$cacheFactory',function($scope,$cacheFactory){
+				var cache = $cacheFactory('myCache');
+				//console.log(cache.info());//缓存的相关信息 id size
+				cache.put('name','hello')//缓存一些信息
+				cache.put('age','20')
+				//console.log(cache.info());
+				console.log(cache.get('name'));
+				cache.remove('name');
+				console.log(cache.get('name'));//undefined
+			}]);
+		</script>
+	</head>
+	<body>
+		<div ng-controller="Aaa"></div>
+	</body>
+</html>

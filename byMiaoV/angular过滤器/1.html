@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../angular.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			var m = angular.module('myApp',[]);
+			m.controller('Aaa',['$scope',function($scope){
+				//$scope.money = "23435345";
+				//$scope.number = "23435345";
+				//$scope.name = "hellow";
+				//$scope.name = {"name":"hello","age":"20"};
+				//$scope.name = "hello";
+				//$scope.name = '342423353245';
+				$scope.name = [
+					{"color":"red","age":"20"},
+					{"color":"yellow","age":"30"},
+					{"color":"blue","age":"40"}
+				]
+			}]);
+		</script>
+	</head>
+	<body>
+		<div ng-controller="Aaa">
+			<p>{{name | currency : '￥'}}</p>
+			<!--<p>{{number | number}}</p>-->
+			<!--<pre>{{name | json}}</pre>-->
+			<!--<p>{{name | limitTo:2}}</p>-->
+			<!--<p>{{name | date}}</p>-->
+			<!--<p>{{name | orderBy : 'color'}}</p>-->
+			<p>{{name | filter:'red'}}</p>
+		</div>
+	</body>
+</html>

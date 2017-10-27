@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../../org/angular.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../org/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<!-- 控制器的视图 大家 -->
+		<div ng-app='hd'>
+			<!-- 指令的DOM操作需要在指令的link属性里面完成 -->
+			<hd-cms title="后盾人" bgcolor="green" fontcolor="#fff"></hd-cms>
+			<hd-cms title="houdunren.com" bgcolor="red" fontcolor="#fff"></hd-cms>
+			<hd-cms title="houduwang.com" bgcolor="pink" fontcolor="#000"></hd-cms>
+		</div>
+		<script type="text/javascript">
+			var m = angular.module('hd',[]);
+			/* 指令 小家 */
+			m.directive('hdCms',[function(){
+				return {
+					restrict:'E',
+					/* 
+					  link属性用于操作页面的DOM 
+					  link:function(scope,ele,attr){}
+					    参数1：scope:指令里面的作用域变量
+					    参数2：ele 要操作的标签元素
+					    参数3：attr 要操作元素的属性
+					    
+					  controller里面的scope是控制器里的作用域
+					 */
+					scope:{
+						title:'@title'
+					},
+					link:function(scope,ele,attr){
+						console.log(attr);
+						$(ele).css({backgroundColor:attr['bgcolor'],color:attr['fontcolor']}).html(scope.title);
+					}
+				}
+			}]);
+		</script>
+	</body>
+</html>

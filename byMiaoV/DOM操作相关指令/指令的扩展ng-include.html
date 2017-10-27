@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html ng-app='myApp'>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../angular.min.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			.red{background:red;}
+			.yellow{background:yellow;}
+		</style>
+		<script type="text/javascript">
+			var m = angular.module('myApp',[]);
+			m.controller('Aaa',['$scope',function($scope){
+				//$scope.text = "hello";
+				$scope.arr = [
+					['a','b'],['c','d']
+				];
+			}]);
+		</script>
+	</head>
+	<body>
+		<div ng-controller="Aaa" ng-include="'temp.html'">
+			
+		</div>
+	</body>
+</html>

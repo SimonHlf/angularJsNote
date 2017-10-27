@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html ng-app='myApp'>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../../org/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../angular.min.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			#div1 div,#div2 div{display: none; width: 200px; height: 200px;border:1px solid red;}
+			input.active{background:red;}
+		</style>
+		<script type="text/javascript">
+			var m = angular.module('myApp',[]);
+			m.directive('hello',function(){
+				return {
+					restrict:'E',
+					replace:true,
+					transclude:true,
+					template:'<div>hello angular<h1 ng-transclude></h1></div>'
+				}
+			});
+			m.directive('hi',function(){
+				return {
+					restrict:'E',
+					replace:true,
+					template:'<span>hi angular</span>'
+				}
+			});
+			m.controller('Aaa',['$scope',function($scope){
+			}]);
+		</script>
+	</head>
+	<body ng-controller="Aaa">
+		<hello>
+			<hi></hi>
+		</hello>
+	</body>
+</html>
