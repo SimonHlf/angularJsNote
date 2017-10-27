@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html ng-app='myApp'>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../angular.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			var m = angular.module('myApp',[]);
+			m.config(['$logProvider',function($logProvider){
+				$logProvider.debugEnabled(true);;//可以debug操作
+				$logProvider.debugEnabled(false);//禁止debug操作
+			}]);//引入相应供应商->服务名称+Provider->变成了这个服务的供应商
+			m.controller('Aaa',['$scope','$log',function($scope,$log){
+				$log.debug('hello');
+			}]);
+		</script>
+	</head>
+	<body>
+		<div ng-controller="Aaa">
+			
+		</div>
+	</body>
+</html>

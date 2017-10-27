@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../../org/angular.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<!--
+			angular缓存处理采用cacheFactory();
+			类似于html5里的sessionStroage localStorage
+			
+			//删除缓存处理
+				obj.remove('web');
+			//全删
+				obj.removeAll();
+			//删除存储数据的表
+				obj.destory();
+		-->
+		<div ng-app='hd' ng-controller='ctrl'>
+			{{data}}
+			<hr>
+			{{user}}
+		</div>
+		<script type="text/javascript">
+			var m = angular.module('hd',[]);
+			m.controller('ctrl',['$scope','$cacheFactory',function($scope,$cacheFactory){
+				//使用angular的cacheFactory时
+				//01:定义一个存储数据的容器(定义一个表)
+				var obj = $cacheFactory('hdphp');
+				//02:使用obj.put来存储数据
+				obj.put('web',{name:'后盾人',url:'houdunren.com'});
+				obj.put('user',{name:'向军',mail:'275890380@qq.com'});
+				//03:然后用obj.get()来获取数据
+				$scope.data = obj.get('web').name;
+				$scope.user = obj.get('user').name;
+				//删除缓存处理
+				//obj.remove('web');
+				console.log(obj.get('web'));
+				console.log(obj.get('user'));
+			}]);
+		</script>
+	</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html ng-app>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="angular.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			//$scope.$apply->将原生js应用于angular中
+			function Aaa($scope){
+				$scope.name = "hello";
+				setTimeout(function(){
+					$scope.$apply(function(){
+						$scope.name = "hi";
+					});
+				},2000);
+			}
+		</script>
+	</head>
+	<body>
+		<div ng-controller = "Aaa">
+			<p>{{name}}</p>
+		</div>
+	</body>
+</html>

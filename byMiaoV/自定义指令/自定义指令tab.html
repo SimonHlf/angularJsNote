@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html ng-app='myApp'>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../angular.min.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			#div1 div{display: none; width: 200px; height: 200px;border:1px solid red;}
+			input.active{background:red;}
+		</style>
+		<script type="text/javascript">
+			var m = angular.module('myApp',[]);
+			m.directive('myTab',function(){
+				return {
+					restrict:'E',
+					replace:true,
+					template:'<div id="div1">\
+								<input class="active" type="button" value="1" />\
+								<input type="button" value="2" />\
+								<input type="button" value="3" />\
+								<div style="display: block;">1111</div>\
+								<div>2222</div>\
+								<div>3333</div>\
+							</div>'
+				}
+			});
+			m.controller('Aaa',['$scope',function($scope){}]);
+		</script>
+	</head>
+	<body>
+		<my-tab></my-tab>
+		<!--<div id="div1">
+			<input class="active" type="button" value="1" />
+			<input type="button" value="2" />
+			<input type="button" value="3" />
+			<div style="display: block;">1111</div>
+			<div>2222</div>
+			<div>3333</div>
+		</div>-->
+	</body>
+</html>

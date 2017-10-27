@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../../org/angular.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<!--
+			$sce服务：
+				用于将angluar里面的html标签语义化在页面显示
+				$sce.trustAsHtml();
+				如果数据比较多的话定义一个过滤器：
+					
+		-->
+		<div ng-app='hd' ng-controller='ctrl'>
+			{{data}}
+			<hr>
+			<div ng-bind-html="data"></div>
+			<hr>
+			<div ng-bind-html="title|trustHtml"></div>
+		</div>
+		<script type="text/javascript">
+			var m = angular.module('hd',[]);
+			m.filter('trustHtml',['$sce',function($sce){
+				return function(data){
+					return $sce.trustAsHtml(data);
+				}
+			}]);
+			m.controller('ctrl',['$scope','$sce',function($scope,$sce){
+				//$scope.data = '后盾php';
+				//$scope.data = '<h1>后盾php</h1>';
+				$scope.data = $sce.trustAsHtml('<h1>后盾php</h1>');
+				$scope.title = '<h3>houunwang.com</h3>';
+			}]);
+		</script>
+	</body>
+</html>

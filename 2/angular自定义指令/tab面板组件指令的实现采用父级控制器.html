@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="../../org/angular.min.js" ></script>
+		<script src="../../org/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div ng-app="hd" ng-controller="ctrl">
+			<hd-tab data="data"></hd-tab>
+		</div>
+		<script type="text/javascript">
+			var m = angular.module('hd',[]);
+			m.controller('ctrl',['$scope',function($scope){
+				$scope.data = [
+					{id:1,title:"培训",data:[
+						{id:1,title:"PHP"},
+						{id:1,title:"HTML5"}
+					]},
+					{id:2,title:"开源产品",data:[
+						{id:1,title:"HDCMS"},
+						{id:1,title:"HDPHP"}
+					]}
+				];
+			}]);
+			m.directive('hdTab',[function(){
+				return{
+					restrict:'E',
+					templateUrl:'../template/hdTab.html',
+					scope:{
+						data:'=data'
+					},
+					link:function(scope,ele,attr){
+						$(ele).delegate('a','click',function(){
+							$('a').removeClass('active');
+							$(this).addClass('active');
+							//查找a元素出现的位置
+							//alert($(this).index());
+							var index = $(this).index();
+							$(ele).find('div.lists').hide();
+							$(ele).find('div.lists').eq(index).show();
+						});
+					}
+				}
+			}]);
+			/*
+			 	总结：
+			 		对于数据的操作可以写到指令的控制器中，也可以直接运用父级控制器的数据（如果是写组件的话建议把数据写到指令的控制器中，通过服务与后台进行对接）。
+			 */
+		</script>
+	</body>
+</html>

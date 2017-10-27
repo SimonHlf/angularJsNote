@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../../org/angular.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div ng-app='hd' ng-controller='ctrl'>
+			<input type="text" ng-model="name" />
+			<h1 hdcms hd-color="name"></h1>
+			
+		</div>
+		<script type="text/javascript">
+			/*	
+				隔离作用域：
+					scope:{}
+						双向文本绑定：
+						
+						
+				template:'<span style="color:{{colors}}">后盾人</span>'
+				scope:{colors:'=color'}
+					@取的是字符串
+					=取的是变量
+				
+				当控制器里的$scope.name="red"的时候，angular会把指令里面的name当成scope的变量传过来，赋值给colors变量
+			*/
+			var m = angular.module('hd',[]);
+			//控制器和指令是平行关系
+			//指令
+			m.directive('hdcms',function(){
+				return {
+					restrict:'AEC',
+					//template:'后盾网开源CMS系统'
+					template:'{{colors}}<span style="color:{{colors}}">后盾人</span><input ng-model="colors"/>', //公用控制器里面的数据
+					//scope:true
+					//scope:{colors:'@hcolor'}
+					//另一种驼峰写法
+					scope:{colors:'=hdColor'}//双向文本绑定
+				}
+			});
+			//控制器
+			m.controller('ctrl',['$scope',function($scope){
+				$scope.name="red";
+				//$scope.color='red';
+			}]);
+		</script>
+	</body>
+</html>

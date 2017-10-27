@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="../org/angular.min.js" ></script>
+	</head>
+	<body ng-app='hd'>
+		<div ng-controller='ctrl'>
+			{{name}}
+			
+			<input type="button" ng-click="fun()" value="触发" />
+		</div>
+		
+		<script>
+			var m = angular.module('hd',[]);
+			m.controller('ctrl',['$scope',function($scope){
+				//$scope js的一个对象。可以定义属性，也可以定义方法
+				//ng-click 触发点击事件
+				$scope.name = "向军";
+				$scope.fun = function(){
+					alert("3");
+				}
+			}]);
+		</script>
+	</body>
+</html>

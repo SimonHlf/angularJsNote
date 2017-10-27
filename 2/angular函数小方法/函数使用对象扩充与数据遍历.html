@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../../org/angular.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<!--
+        		angular.extend();对象或数组合并
+				angular.forEach();遍历对象或数组中的每一个元素并执行一个函数
+				angular.fromJson()将json字符串转化为对象
+				angular.toJson()将json对象转为字符串
+        -->
+		<div ng-app='hd' ng-controller='ctrl'>
+			{{data}};
+		</div>
+		<script type="text/javascript">
+			var m = angular.module('hd',[]);
+			m.controller('ctrl',['$scope',function($scope){
+				var obj = {"name":"后盾网"};
+				angular.extend(obj,{url:"houdunwang.com","web":"后盾人"});
+				//console.log(obj);
+				
+				$scope.data = [
+					{"name":"后盾网",url:"houdunwang.com"},
+					{"name":"后盾人",url:"houdunren.com"}
+				];
+				
+				angular.forEach($scope.data,function(v,k){
+					//k下标
+					//console.log(v);
+					console.log(k);
+					v.url = 'www.'+ v.url;
+				});
+			}]);
+		</script>
+	</body>
+</html>

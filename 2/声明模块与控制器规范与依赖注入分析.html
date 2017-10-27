@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../org/angular.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div ng-app="hd" ng-controller="ctrl">
+			{{name}}
+		</div>
+		<script type="text/javascript">
+			var m = angular.module('hd',[]);//声明出或者实例化出一个模块， []依赖其他模块
+			m.controller('ctrl',['$scope',function($scope){
+				//后期也可以注入其他服务进来'',''
+				//把$scope这个模型注入进来和视图打交道的
+				$scope.name = "向军";
+				
+				
+			}]);//第一个参数：控制器的名字,后面把$scope依赖注入进来
+		</script>
+	</body>
+</html>

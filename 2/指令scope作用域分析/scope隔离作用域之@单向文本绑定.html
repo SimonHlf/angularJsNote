@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../../org/angular.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div ng-app='hd' ng-controller='ctrl'>
+			{{name}}
+			<!--<h1 hdcms hcolor="#f60"></h1>-->
+			<!-- 驼峰写法 -->
+			<!--<h1 hdcms hd-color="#f90"></h1>-->
+			<!-- 可写控制器里的值  -->
+			<input type="text" ng-model="color" />
+			<h1 hdcms hd-color={{color}}></h1>
+			
+		</div>
+		<script type="text/javascript">
+			/*	
+				隔离作用域：
+					scope:{}
+						单向文本绑定：
+						
+						
+				template:'<span style="color:{{colors}}">后盾人</span>'
+				scope:{colors:'@color'}
+					第一个colors:为指令里面的元素、属性，第二个color是从属性里面来
+					
+				指令的变量和控制器的变量是隔离的，但是可以通过中间方法就是通过属性的方式来获取控制器的变量
+					
+			*/
+			var m = angular.module('hd',[]);
+			//控制器和指令是平行关系
+			//指令
+			m.directive('hdcms',function(){
+				return {
+					restrict:'AEC',
+					//template:'后盾网开源CMS系统'
+					template:'{{colors}}<span style="color:{{colors}}">后盾人</span>', //公用控制器里面的数据
+					//scope:true
+					//scope:{colors:'@hcolor'}
+					//另一种驼峰写法
+					scope:{colors:'@hdColor'}//单向文本绑定
+				}
+			});
+			//控制器
+			m.controller('ctrl',['$scope',function($scope){
+				//$scope.name="后盾人1";
+				$scope.color="red";
+				$scope.name='后盾网11';
+			}]);
+		</script>
+	</body>
+</html>

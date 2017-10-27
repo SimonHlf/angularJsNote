@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html ng-app='myApp'>
+	<head>
+		<meta charset="UTF-8">
+		<title>数据显示优化处理</title>
+		<script src="../angular.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="https://cdn.bootcss.com/angular.js/1.5.8/angular-sanitize.min.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			.active{background:red;}
+			.active1{background:blue;}
+		</style>
+		<script type="text/javascript">
+			var m = angular.module('myApp',['ngSanitize']);
+			m.controller('Aaa',['$scope',function($scope){
+				$scope.text = "hello";
+				$scope.name = "<h1>nihao</h1>";
+			}]);
+		</script>
+	</head>
+	<body>
+		<div ng-controller="Aaa">
+			<!--<div>{{text}}</div>-->
+			<!--<div ng-bind="text"></div>-->
+			<!--<div>{{text}},{{text}}</div>-->
+			<!--<div ng-bind="text"></div>
+			<div ng-bind-template="{{text}},{{text}}"></div>
+			
+			<div ng-bind-html="name"></div>-->
+			<div ng-cloak>{{text}}</div>
+			<div ng-non-bindable>{{text}}</div>
+		</div>
+		<script type="text/javascript">
+			alert(1);
+		</script>
+	</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../../org/angular.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<!-- 
+			ng-show:显示元素 通过css把它隐藏
+			ng-hide:隐藏元素
+			ng-if：把这个dom节点真正移除
+		-->
+		<div ng-app='hd' ng-controller='ctrl'>
+			<input type="checkbox" ng-model="name" />
+			<!--<div ng-show="name">显示我了。。。。</div>-->
+			<div ng-if="name">显示我了。。。。</div>
+			<!--<div ng-hide="name">隐藏我了。。。。</div>-->
+			{{name}}
+		</div>
+		<script type="text/javascript">
+			var m = angular.module('hd',[]);
+			m.controller('ctrl',['$scope',function($scope){
+				
+			}]);
+		</script>
+	</body>
+</html>

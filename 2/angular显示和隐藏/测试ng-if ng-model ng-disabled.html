@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../org/angular.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div ng-app='hd' ng-controller='ctrl'>
+			{{status}}
+			<label>
+				<input type="checkbox" ng-model="status" />接受协议
+			</label>
+			<button ng-init="onOffTxtArea=false" ng-click="onOffTxtArea=!onOffTxtArea">查看协议</button><br/>
+			<textarea ng-if="onOffTxtArea">欢迎收看由后盾网录制的angluar视频教程</textarea><br/>
+			<button ng-disabled="!status">登录</button>
+		</div>
+		<script type="text/javascript">
+			var m = angular.module('hd',[]);
+			m.controller('ctrl',['$scope',function($scope){
+				//$scope.status=false;
+			}]);
+		</script>
+	</body>
+</html>

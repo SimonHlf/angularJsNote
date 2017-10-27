@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../../org/angular.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div ng-app='hd'>
+			<!-- A-->
+			<div hd-cms>Hdphp开源框架1</div>
+		</div>
+		<script type="text/javascript">
+			/*
+			 	标签里面有内容，并且内容还想保留到某个位置，需要使用transclude
+			 	transclude:true
+			 */
+			var m = angular.module('hd',[]);
+			//创建自定义指令
+			m.directive('hdCms',[function(){
+				return {
+					restrict:'EA',
+					template:'<h1>后盾人<div ng-transclude=""></div></h1>',
+					transclude:true
+				}
+			}]);
+		</script>
+	</body>
+</html>

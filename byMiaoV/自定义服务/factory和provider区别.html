@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html ng-app='myApp'>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../angular.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			var m = angular.module('myApp',[]);
+			/*m.factory('myService',function(){
+				return {
+					name : 'hello',
+					show : function(){
+						return this.name + ':angular';
+					}
+				};
+			});*/
+			m.provider('myService',function(){
+				return {
+					name : 'hello',
+					$get : function(){
+						return {
+							name : this.name,
+							show : function(){
+								return this.name + ':angularJs';
+							}
+						}
+					}
+				};
+			});
+			m.config(['myServiceProvider',function(myServiceProvider){
+				//console.log(myServiceProvider);
+				myServiceProvider.name = 'hi';
+			}])
+			m.controller('Aaa',['$scope','myService',function($scope,myService){
+				console.log(myService.show());//hi:angularJs
+			}]);
+		</script>
+	</head>
+	<body>
+		<div id="parent" ng-controller="Aaa">
+		</div>
+	</body>
+</html>

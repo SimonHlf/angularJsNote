@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../../org/angular.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<!--
+        	使用orderBy xx 来进行对数据排序
+        	{{data|orderBy:'id':true}} 第一个参数指定用什么来排序 第二个参数是指定排序的方式true->降序 false->升序 
+        	{{data|filter:'后'}} 凡事带后的都可以匹配出来
+        	{{data|filter:'后':true}}--完全匹配(和数据完全一致)
+        -->
+		<div ng-app='hd' ng-controller='ctrl'>
+			{{data|orderBy:'click':false}}
+			<hr/>
+			{{data|filter:'后'}}
+			<hr/>
+			{{data|filter:'后盾人':true}}
+		</div>
+		
+		<script type="text/javascript">
+			var m = angular.module('hd',[]);
+			m.controller('ctrl',['$scope',function($scope){
+				//排序
+				$scope.data = [
+					{id:1,click:100,title:'后盾人'},
+					{id:2,click:200,title:'PHP'},
+					{id:3,click:300,title:'后盾云'}
+				];
+				
+			}]);
+		</script>
+	</body>
+</html>

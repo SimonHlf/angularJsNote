@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html ng-app='myApp'>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../angular.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			var m = angular.module('myApp',[]);
+			m.provider('myRandomNum',function(){
+				return {
+					bolInt : false,
+					init : function(argBol){
+						if(argBol){
+							this.bolInt = true;
+						}else{
+							this.bolInt = false;
+						}
+					},
+					$get : function(){
+						var This = this;
+						return function(num1,num2){
+							return This.bolInt?Math.round(Math.random()*(num2-num1) + num1):Math.random()*(num2-num1) + num1;
+						}
+					}
+				};
+			});
+			m.config(['myRandomNumProvider',function(myRandomNumProvider){
+				myRandomNumProvider.init(true);
+			}]);
+			m.controller('Aaa',['$scope','myRandomNum',function($scope,myRandomNum){
+				console.log(myRandomNum(-2,3))
+			}]);
+		</script>
+	</head>
+	<body>
+		<div ng-controller="Aaa"></div>
+	</body>
+</html>

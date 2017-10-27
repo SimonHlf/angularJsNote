@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../../org/angular.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../org/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div ng-app='hd' ng-controller='ctrl'>
+			<form action="trim.php" method="post">
+				标题：<input type="text" name="title" ng-model="title" /><br>
+				<input type="text" name="data"/><br>
+				<input type="submit" />
+			</form>
+		</div>
+		<script type="text/javascript">
+			var m = angular.module('hd',[]);
+			m.controller('ctrl',['$scope',function($scope){
+				$scope.title="";
+				$("form").submit(function(){
+					$("[name='data']").val($scope.title);
+				});
+			}]);
+		</script>
+	</body>
+</html>

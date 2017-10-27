@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../../org/angular.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div ng-app='hd' ng-controller='ctrl'>
+			{{name}}
+			<input type="text" ng-model="name" />
+			<hr>
+			<hdcms></hdcms>
+			<hr>
+			<hdcms></hdcms>
+		</div>
+		<script type="text/javascript">
+			/*
+			 	在控制器里面写个input的表单：控制器和指令的数据是共享的
+			 	在指令里面写一个input表单：在指令里面更改ng-model下的name，控制器和指令的数据都会修改同时发生变化
+			 	如果是多个指令下的input表单：不同的ng-model控制不同的数据 增加一个scope默认是false
+			 	当是true的时候指令拥有ng-model的当数据发生改变时并不影响控制器和其他指令下的数据的改变（当我们更改指令的时候，angular默认会给指令配置一个scope默认为false）
+			 	当scope的属性为{}的时候，谁都不影响谁
+				
+				总结：
+					scope:
+						false:和控制器还有其他指令的数据共享
+						true:相当于父子级关系（继承父级的，但是自己也有独立的）就只改变自己的数据，不影响到控制器和其他指令的数据
+						{}:控制器和指令之间的数据互不影响（相当于分家）
+				
+				
+			*/
+			var m = angular.module('hd',[]);
+			//控制器和指令是平行关系
+			//指令
+			m.directive('hdcms',function(){
+				return {
+					restrict:'AEC',
+					//template:'后盾网开源CMS系统'
+					template:'{{name}} <input type="text" ng-model="name" />', //公用控制器里面的数据
+					//scope:true
+					scope:{}
+				}
+			});
+			//控制器
+			m.controller('ctrl',['$scope',function($scope){
+				$scope.name="后盾人";
+			}]);
+		</script>
+	</body>
+</html>

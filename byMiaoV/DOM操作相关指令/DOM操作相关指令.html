@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html ng-app='myApp'>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../angular.min.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			.red{background:red;}
+			.yellow{background:yellow;}
+		</style>
+		<script type="text/javascript">
+			var m = angular.module('myApp',[]);
+			m.controller('Aaa',['$scope',function($scope){
+				$scope.bBtn = true;
+			}]);
+		</script>
+	</head>
+	<body>
+		<div ng-controller="Aaa">
+			<input type="checkbox" ng-model="bBtn" />
+			<!--<div ng-show="bBtn">aaaaa</div>-->
+			<!--<div ng-show="true">aaaaaa</div>-->
+			<!--<div ng-if="bBtn">ng-if</div>-->
+			<div ng-switch on="bBtn">
+				<p ng-switch-default>默认的效果</p>
+				<p ng-switch-when="false">切换的效果</p>
+			</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../org/angular.min.js"></script>
+	</head>
+	<body>
+		<div ng-app='hd' ng-controller='ctrl'>
+			<!-- 
+				表单里填写表达式需要用ng-value
+				
+			-->
+			商品：<input type="text" ng-model='goods.title' /><br/>
+			价格：<input type="text" ng-model='goods.price' readonly="readonly"/>元<br/>
+			数量：<input type="text" ng-model='goods.num' />个<br/>
+			总价：<input type="text" ng-value="goods.price*goods.num" readonly="readonly" />
+		</div>
+		<script type="text/javascript">
+			var m = angular.module('hd',[]);
+			m.controller('ctrl',['$scope',function($scope){
+				$scope.goods = {'title':'后盾网视频','price':16,'num':2};
+			}]);
+		</script>
+	</body>
+</html>

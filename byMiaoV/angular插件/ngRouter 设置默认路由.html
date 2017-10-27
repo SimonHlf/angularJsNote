@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html ng-app='myApp'>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../angular.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="http://cdn.bootcss.com/angular.js/1.2.9/angular-route.min.js"></script>
+		<script type="text/javascript">
+			var m = angular.module('myApp',['ngRoute']);
+			m.config(['$routeProvider',function($routeProvider){
+				$routeProvider
+					.when('/aaa',{
+						template:'<p>首页的内容</p>'
+					})
+					.when('/bbb',{
+						template:'<p>学员的内容</p>'
+					})
+					.when('/ccc',{
+						template:'<p>课程的内容</p>'
+					})
+					.otherwise({
+						redirectTo : '/aaa'
+					});
+			}]);
+			m.controller('Aaa',['$scope',function($scope){}]);
+		</script>
+	</head>
+	<body>
+		<div ng-controller="Aaa">
+			<a href="#aaa">首页</a>
+			<a href="#bbb">学员</a>
+			<a href="#ccc">课程</a>
+			<div ng-view></div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../../org/angular.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div ng-app='hd'>
+			<!-- A-->
+			<div hd-cms>Hdphp开源框架1</div>
+		</div>
+		<script type="text/javascript">
+			/*
+			 	templateUrl和template不能同事存在
+			 	使用template或者templateUrl的时候里面的内容必须要有一级块标签
+			 */
+			var m = angular.module('hd',[]);
+			//创建自定义指令
+			m.directive('hdCms',[function(){
+				return {
+					restrict:'EA',
+					replace:false,
+					templateUrl:'../template/hdcms.html'//引入外部模版  外部模版标准上要和指令同名
+					
+				}
+			}]);
+		</script>
+	</body>
+</html>

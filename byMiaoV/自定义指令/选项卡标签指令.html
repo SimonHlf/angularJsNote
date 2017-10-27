@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html ng-app='myApp'>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../../org/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../angular.min.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			#div1 div,#div2 div{display: none; width: 200px; height: 200px;border:1px solid red;}
+			input.active{background:red;}
+		</style>
+		<script type="text/javascript">
+			var m = angular.module('myApp',[]);
+			m.directive('myTab',function(){
+				return {
+					restrict:'E',
+					replace:true,
+					scope : {
+						myId : '@',
+						myData : '='
+					},
+					templateUrl:'tabHtml.html',
+					controller:['$scope',function($scope){
+						$scope.name="miaov";
+					}],
+					link:function(scope,element,attr){
+						//console.log(scope.name);//miaov
+						//console.log(element)
+						//console.log(attr.myId)
+						//采用委托形式
+						element.delegate('input','click',function(){
+							$(this).attr('class','active').siblings('input').attr('class','');
+							$(this).siblings('div').eq( $(this).index() ).css('display','block').siblings('div').css('display','none')
+						});
+						
+					}
+				}
+			});
+			m.controller('Aaa',['$scope',function($scope){
+				$scope.data1 = [
+					{title : '数学',content:'11111'},
+					{title : '语文',content:'222222'},
+					{title : '英语',content:'333333'}
+				];
+				
+				$scope.data2 = [
+					{title : '物理',content:'55555555'},
+					{title : '化学',content:'666666666666'}
+				];
+			}]);
+		</script>
+	</head>
+	<body ng-controller="Aaa">
+		<my-tab my-id="div1" my-data="data1"></my-tab>
+		<my-tab my-id="div2" my-data="data2"></my-tab>
+	</body>
+</html>

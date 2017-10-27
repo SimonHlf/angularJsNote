@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html ng-app='myApp'>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="angular.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			var m = angular.module('myApp',[]); 			/*m.controller('Aaa',['$scope',function($scope){
+				$scope.name = 'hello';
+			}]);
+			m.controller('Bbb',['$scope',function($scope){
+				$scope.name = 'hi';
+			}]);*/
+			m.run(['$rootScope',function($rootScope){
+				$rootScope.name = "hello";
+			}]);
+			console.log(m);
+		</script>
+	</head>
+	<body>
+		<div>
+			<p>{{name}}</p>
+		</div>
+		<div>
+			<p>{{name}}</p>
+		</div>
+	</body>
+</html>
